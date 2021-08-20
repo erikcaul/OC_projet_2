@@ -40,30 +40,8 @@ if response.ok:
     print(price_excluding_tax)
 
     # Extract review_rating
-    ps = soup.findAll('p')
-
-    for p in ps:
-        rating = soup.find_all("p", class_="star-rating One")
-        if rating:
-            print(rating)
-            break
-        rating = soup.find_all("p", class_="star-rating Two")
-        if rating:
-            print(rating)
-            break
-        rating = soup.find_all("p", class_="star-rating Three")
-        if rating:
-            print(rating)
-            break
-        rating = soup.find_all("p", class_="star-rating Four")
-        if rating:
-            print(rating)
-            break
-        rating = soup.find_all("p", class_="star-rating Five")
-        if rating:
-            print(rating)
-            break
-
-    # print(review_rating)
+    star_rating = soup.find(class_='star-rating')
+    review_rating = star_rating['class'][1]
+    print(review_rating)
 
     # Extract impage_url
