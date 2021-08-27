@@ -53,3 +53,7 @@ if response.ok:
     image = active_image.find('img')
     image_url = image['src']
     print('http://books.toscrape.com/catalogue/unicorn-tracks_951/' + image_url)
+    # return du dictionnaire
+
+    # faire méthode
+    # os.path : pour gérer les chemins (voir si existe pour url)
