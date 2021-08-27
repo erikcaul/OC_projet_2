@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 
 category_books = []
 
-def category_books_extract(url):
+def books_url_list_per_category(url):
     page_url = url
     # changer page des livres de la catégorie
     i = 1

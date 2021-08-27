@@ -19,5 +19,3 @@ def category_url_list_extract(url):
                         path = oldurl.rsplit('/', 1)[0]
                         category_url_list.append(path + '/' + category_url)
                 return(category_url_list)
-
-# print(category_url_list_extract('http://books.toscrape.com/catalogue/category/books_1/index.html'))
