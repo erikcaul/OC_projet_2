@@ -24,4 +24,4 @@ def category_books_extract(url):
         response = requests.get(page_url)
     return(category_books)
 
-print(category_books_extract('http://books.toscrape.com/catalogue/category/books/fantasy_19/index.html'))
+# print(category_books_extract('http://books.toscrape.com/catalogue/category/books/fantasy_19/index.html'))

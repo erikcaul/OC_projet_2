@@ -53,7 +53,7 @@ def data_book_extract(url):
         image_url = path + '/' + image_url
 
         # return du dictionnaire
-        data_book = {'product_page_url': url, 'universal_product_code': universal_product_code, 'title': title, 'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax, 'number_available': number_available, 'category': category, 'review_rating': review_rating, 'image_url': image_url}
+        data_book = {'product_page_url': url, 'universal_product_code': universal_product_code, 'title': title, 'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax, 'number_available': number_available, 'product_description': product_description, 'category': category, 'review_rating': review_rating, 'image_url': image_url}
         return data_book
 
-print(data_book_extract('http://books.toscrape.com/catalogue/unicorn-tracks_951/index.html'))
+# print(data_book_extract('http://books.toscrape.com/catalogue/unicorn-tracks_951/index.html'))
