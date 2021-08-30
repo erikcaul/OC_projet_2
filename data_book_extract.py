@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from extract_category import extract_category
+from image_download import image_download
 
 def data_book_extract(url):
     response = requests.get(url)
@@ -41,6 +42,7 @@ def data_book_extract(url):
         image_url = image['src']
         path = url.rsplit('/', 1)[0]
         image_url = path + '/' + image_url
+        image_download(image_url, 'dossier_images/' + title + '.jpg')
 
         # return du dictionnaire
         data_book = {'product_page_url': url, 'universal_product_code': universal_product_code, 'title': title, 'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax, 'number_available': number_available, 'product_description': product_description, 'category': category, 'review_rating': review_rating, 'image_url': image_url}

@@ -4,7 +4,7 @@ def data_file_init(category):
     # creation csvfile
     """data_dict = data_dict
     category = data_dict['category']"""
-    csv_file = category + '.csv'
+    csv_file = 'csv_files/' + category + '.csv'
     fieldnames = ['product_page_url', 'universal_product_code', 'title', 'price_including_tax', 'price_excluding_tax',
                   'number_available', 'product_description', 'category', 'review_rating', 'image_url']
     try:
