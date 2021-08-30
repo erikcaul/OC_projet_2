@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 
 category_url_list = []
 
-def category_url_list_extract(url):
+def extract_category_url_list(url):
         url = url
         response = requests.get(url)
         if response.ok:

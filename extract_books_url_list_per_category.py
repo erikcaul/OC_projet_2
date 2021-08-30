@@ -4,7 +4,7 @@ from urllib.parse import urljoin
 
 category_books = []
 
-def books_url_list_per_category(url):
+def extract_books_url_list_per_category(url):
     page_url = url
     # changer page des livres de la catégorie
     i = 1
@@ -23,5 +23,3 @@ def books_url_list_per_category(url):
         page_url = urljoin(page_url, 'page-' + str(i) + '.html')
         response = requests.get(page_url)
     return(category_books)
-
-# print(category_books_extract('http://books.toscrape.com/catalogue/category/books/fantasy_19/index.html'))
