@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 from extract_category import extract_category
 from download_img import download_img
 
+
 def extract_transf_books_data(url):
     response = requests.get(url)
     if response.ok:
@@ -42,8 +43,11 @@ def extract_transf_books_data(url):
         image_url = image['src']
         path = url.rsplit('/', 1)[0]
         image_url = path + '/' + image_url
-        download_img(image_url, 'img_folder/' + title[0:7] + '.jpg')
+        # download_img(image_url, 'img_folder/' + category + '_' + str(i) + '.jpg')
 
         # return du dictionnaire
-        data_book = {'product_page_url': url, 'universal_product_code': universal_product_code, 'title': title, 'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax, 'number_available': number_available, 'product_description': product_description, 'category': category, 'review_rating': review_rating, 'image_url': image_url}
+        data_book = {'product_page_url': url, 'universal_product_code': universal_product_code, 'title': title,
+                     'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax,
+                     'number_available': number_available, 'product_description': product_description,
+                     'category': category, 'review_rating': review_rating, 'image_url': image_url}
         return data_book

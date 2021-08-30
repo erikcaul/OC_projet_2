@@ -13,4 +13,4 @@ def extract_category(url):
         category[0] = ''
         category[-1] = ''
         category = ''.join(category)
-        return(category)
+        return category
