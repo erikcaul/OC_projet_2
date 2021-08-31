@@ -9,7 +9,8 @@ from extract_category import extract_category
 
 def extract_books_url_list_per_category(url):
     page_url = url
-    i, j = 1
+    i = 1
+    j = 0
     response = requests.get(page_url)
     while response.ok:
         soup = BeautifulSoup(response.content, 'html.parser')
