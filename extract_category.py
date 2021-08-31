@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def extract_category(url):
     response = requests.get(url)
     if response.ok:

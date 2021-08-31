@@ -1,51 +1,25 @@
 import requests
 from bs4 import BeautifulSoup
 from extract_category import extract_category
-from download_img import download_img
+from extract_img_url import extract_img_url
+from extract_upc_prices_available import extract_upc_prices_available
 
 
 def extract_transf_books_data(url):
     response = requests.get(url)
     if response.ok:
         soup = BeautifulSoup(response.content, 'html.parser')
-
-        # Extract title
         title = soup.find('h1').text
-
-        # Extract product description
         product_description = soup.find('meta', {'name': 'description'})
         product_description = product_description['content']
-
-        # Extract universal_product_list (UPC) / tax (incl. & excl.) / number_available
-        product_table_info = soup.find('table', class_="table table-striped")
-        trs = product_table_info.findAll('tr')
-        for tr in trs:
-            th = tr.find('th')
-            if th.text == 'UPC':
-                universal_product_code = tr.find('td').text
-            if th.text == 'Price (excl. tax)':
-                price_excluding_tax = tr.find('td').text
-            if th.text == 'Price (incl. tax)':
-                price_including_tax = tr.find('td').text
-            if th.text == 'Availability':
-                number_available = tr.find('td').text
-
-        # extract category
+        universal_product_code = extract_upc_prices_available(url)['universal_product_code']
+        price_including_tax = extract_upc_prices_available(url)['price_including_tax']
+        price_excluding_tax = extract_upc_prices_available(url)['price_excluding_tax']
+        number_available = extract_upc_prices_available(url)['number_available']
         category = extract_category(url)
-
-        # Extract review_rating
         star_rating = soup.find(class_='star-rating')
         review_rating = star_rating['class'][1]
-
-        # Extract image_url
-        active_image = soup.find(class_='item')
-        image = active_image.find('img')
-        image_url = image['src']
-        path = url.rsplit('/', 1)[0]
-        image_url = path + '/' + image_url
-        # download_img(image_url, 'img_folder/' + category + '_' + str(i) + '.jpg')
-
-        # return du dictionnaire
+        image_url = extract_img_url(url)
         data_book = {'product_page_url': url, 'universal_product_code': universal_product_code, 'title': title,
                      'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax,
                      'number_available': number_available, 'product_description': product_description,
