@@ -15,3 +15,5 @@ Dans Terminal, à la racine du projet, écrire : mkdir csv_files
 
 # Exécuter le code d'application : 
 Dans Terminal, à la racine du projet, écrire : python script.py
+possible de rajouter un paramètre optionnel aui est le chemin vers où réaliser les extractions
+

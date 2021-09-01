@@ -1,4 +1,6 @@
 import requests
+import os
+import os.path
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
 from extract_transf_books_data import extract_transf_books_data
@@ -12,6 +14,8 @@ def extract_books_url_list_per_category(url):
     i = 1
     j = 0
     response = requests.get(page_url)
+    if not os.path.exists('img_folder'):
+        os.makedirs('img_folder')
     while response.ok:
         soup = BeautifulSoup(response.content, 'html.parser')
         h3s = soup.findAll('h3')
