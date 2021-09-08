@@ -9,6 +9,7 @@ def extract_category(url):
 
         ul = soup.find('ul', class_='breadcrumb')
         lis = ul.findAll('li')
+        # transform
         category_text = lis[2].text
         category = list(category_text)
         category[0] = ''

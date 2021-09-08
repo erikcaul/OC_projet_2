@@ -4,7 +4,7 @@ from extract_category import extract_category
 from extract_img_url import extract_img_url
 from extract_upc_prices_available import extract_upc_prices_available
 
-
+# extract données brutes : E de ETL
 def extract_transf_books_data(url):
     response = requests.get(url)
     if response.ok:

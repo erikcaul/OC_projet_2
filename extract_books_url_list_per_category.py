@@ -29,6 +29,8 @@ def extract_books_url_list_per_category(url):
             image_url = extract_img_url(product_page_url)
             category = extract_category(product_page_url)
             download_img(image_url, 'img_folder/' + category + '_' + str(j) + '.jpg')
+            # possibilite de metre le UPC pour identifier image
+            # voir si je peux mettre une url avec join (sans url dans le dur)
             j += 1
         i += 1
         page_url = urljoin(page_url, 'page-' + str(i) + '.html')

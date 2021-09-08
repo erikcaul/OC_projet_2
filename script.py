@@ -12,3 +12,12 @@ if __name__ == '__main__':
     for category_url in category_url_list:
         url_list_per_category = extract_books_url_list_per_category(category_url)
         data_saving(url_list_per_category)
+
+# séparer dans mon code l'extract (une fonction); le transform (une fonction) et le load (une fonction)
+# dans un seul fichier ou dans 3
+# Extract : données brutes
+# Transform : générer les url transformées, nom des img.
+# load : save_data
+# dowload img à part
+
+# mettre dans une BdD, API, fair eune application Qu'est-ce qui peut être fait à partir de ça
