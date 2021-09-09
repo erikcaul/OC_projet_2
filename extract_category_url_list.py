@@ -13,10 +13,11 @@ def extract_category_url_list(url):
         ul = soup.find('ul', class_='nav nav-list')
         ul_2 = ul.find('ul')
         lis = ul_2.findAll('li')
-        # transform
+
         for li in lis:
             a = li.find('a')
             category_url = a['href']
+            # transform
             oldurl = url
             path = oldurl.rsplit('/', 1)[0]
             category_url = path + '/' + category_url
