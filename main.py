@@ -181,7 +181,8 @@ if __name__ == '__main__':
         for product_page_url in product_page_url_list:
             data_dict = extract_product_info(product_page_url)
             # transform image url et modif dans le dictionnaire
-
+            image_url = transform_image_url(data_dict['image_url'])
+            data_dict['image_url'] = image_url
             data_dict_list.append(data_dict)
             load_book_img(data_dict)
             print(data_dict)
