@@ -7,6 +7,7 @@ import urllib.request
 import csv
 import os
 
+
 # Extract
 def extract_raw_category_url_list(url):
     url = url
@@ -23,6 +24,7 @@ def extract_raw_category_url_list(url):
             category_url = a['href']
             raw_category_url_list.append(category_url)
         return raw_category_url_list
+
 
 def extract_raw_books_url_list_per_category(category_url):
     i = 1
@@ -47,10 +49,12 @@ def extract_title(soup):
     title = soup.find('h1').text
     return title
 
+
 def extract_product_description(soup):
     product_description = soup.find('meta', {'name': 'description'})
     product_description = product_description['content']
-    return(product_description)
+    return (product_description)
+
 
 def extract_upc_prices_available(soup):
     product_table_info = soup.find('table', class_="table table-striped")
@@ -70,6 +74,7 @@ def extract_upc_prices_available(soup):
                          'number_available': number_available}
     return product_info_data
 
+
 def extract_category(soup):
     ul = soup.find('ul', class_='breadcrumb')
     lis = ul.findAll('li')
@@ -78,18 +83,21 @@ def extract_category(soup):
     category[0] = ''
     category[-1] = ''
     category = ''.join(category)
-    return(category)
+    return (category)
+
 
 def extract_review_rating(soup):
     star_rating = soup.find(class_='star-rating')
     review_rating = star_rating['class'][1]
-    return(review_rating)
+    return (review_rating)
+
 
 def extract_raw_img_url(soup):
     active_image = soup.find(class_='item')
     image = active_image.find('img')
     raw_image_url = image['src']
-    return(raw_image_url)
+    return (raw_image_url)
+
 
 def extract_product_info(product_page_url):
     # Extract one product data
@@ -106,11 +114,13 @@ def extract_product_info(product_page_url):
         review_rating = extract_review_rating(soup)
         image_url = extract_raw_img_url(soup)
 
-        data_book = {'product_page_url': product_page_url, 'universal_product_code': universal_product_code, 'title': title,
+        data_book = {'product_page_url': product_page_url, 'universal_product_code': universal_product_code,
+                     'title': title,
                      'price_including_tax': price_including_tax, 'price_excluding_tax': price_excluding_tax,
                      'number_available': number_available, 'product_description': product_description,
                      'category': category, 'review_rating': review_rating, 'image_url': image_url}
         return data_book
+
 
 # Transform
 
@@ -119,7 +129,7 @@ def transform_category_url_list(raw_category_url_list):
     for category_url in raw_category_url_list:
         base_url = 'http://books.toscrape.com/index.html'
         path = base_url.rsplit('/', 1)[0]
-        category_url= urllib.parse.urljoin(path, category_url)
+        category_url = urllib.parse.urljoin(path, category_url)
         category_url_list.append(category_url)
     return category_url_list
 
@@ -132,7 +142,8 @@ def transform_books_url_list_per_category(raw_books_url_list_per_category):
         url_split_2 = url_split[0] + '/'
         product_page_url = urllib.parse.urljoin(base_url, url_split_2, url_split)
         product_page_url_list.append(product_page_url)
-    return(product_page_url_list)
+    return (product_page_url_list)
+
 
 def transform_image_url(raw_image_url):
     url_split = raw_image_url.rsplit('/', 5)[1:6]
@@ -141,6 +152,7 @@ def transform_image_url(raw_image_url):
         image_url += '/' + i
     return image_url
 
+
 # Load
 def load_book_img(dict_book):
     # load book image
@@ -148,6 +160,7 @@ def load_book_img(dict_book):
     image_url = dict_book['image_url']
     file_name = 'img_folder/' + upc + '.jpg'
     urllib.request.urlretrieve(image_url, file_name)
+
 
 def load_data_books_in_csv_file(data_dict_list):
     category = data_dict_list[0]['category']
@@ -180,21 +193,10 @@ if __name__ == '__main__':
         data_dict_list = []
         for product_page_url in product_page_url_list:
             data_dict = extract_product_info(product_page_url)
-            # transform image url et modif dans le dictionnaire
             image_url = transform_image_url(data_dict['image_url'])
             data_dict['image_url'] = image_url
             data_dict_list.append(data_dict)
             load_book_img(data_dict)
-            print(data_dict)
+            print('Extract done for a category product')
         load_data_books_in_csv_file(data_dict_list)
-
-
-
-# séparer dans mon code l'extract (une fonction); le transform (une fonction) et le load (une fonction)
-# dans un seul fichier ou dans 3
-# Extract : données brutes
-# Transform : générer les url transformées, nom des img.
-# load : save_data
-# dowload img à part
-
-# mettre dans une BdD, API, fair eune application Qu'est-ce qui peut être fait à partir de ça
+        print('Load done for a category product')
