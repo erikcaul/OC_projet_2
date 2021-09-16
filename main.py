@@ -53,7 +53,7 @@ def extract_title(soup):
 def extract_product_description(soup):
     product_description = soup.find('meta', {'name': 'description'})
     product_description = product_description['content']
-    return (product_description)
+    return product_description
 
 
 def extract_upc_prices_available(soup):
@@ -83,20 +83,20 @@ def extract_category(soup):
     category[0] = ''
     category[-1] = ''
     category = ''.join(category)
-    return (category)
+    return category
 
 
 def extract_review_rating(soup):
     star_rating = soup.find(class_='star-rating')
     review_rating = star_rating['class'][1]
-    return (review_rating)
+    return review_rating
 
 
 def extract_raw_img_url(soup):
     active_image = soup.find(class_='item')
     image = active_image.find('img')
     raw_image_url = image['src']
-    return (raw_image_url)
+    return raw_image_url
 
 
 def extract_product_info(product_page_url):
@@ -142,7 +142,7 @@ def transform_books_url_list_per_category(raw_books_url_list_per_category):
         url_split_2 = url_split[0] + '/'
         product_page_url = urllib.parse.urljoin(base_url, url_split_2, url_split)
         product_page_url_list.append(product_page_url)
-    return (product_page_url_list)
+    return product_page_url_list
 
 
 def transform_image_url(raw_image_url):
