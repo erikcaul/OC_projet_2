@@ -10,5 +10,5 @@ Dans Terminal, à la racine du projet, écrire : source env/bin/activate
 Dans Terminal, à la racine du projet, écrire : pip install -r requirements.txt
 
 # Exécuter le code d'application : 
-Dans Terminal, à la racine du projet, écrire : python script.py
+Dans Terminal, à la racine du projet, écrire : python main.py
 
